@@ -21,6 +21,7 @@ npm run build
 `Vue.use(JmPlug)`
 
 ### 页面引入comfirm组件
+```
 `this.$refs.myConfirm.showModel();  
   this.confirmOptions = {  
     type: "warning",//warning  
@@ -37,3 +38,4 @@ npm run build
     }  
 }`  
 `<Jm-comfirm :confirmModalOptions="confirmOptions" ref="myConfirm"></Jm-comfirm>`
+```
