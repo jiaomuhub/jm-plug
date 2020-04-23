@@ -4,6 +4,7 @@ import JmInput from './packages/input/index.js';
 import JmSwitch from './packages/switch/index.js';
 import JmComfirm from './packages/comfirm/index.js';
 import JmAutoSearch from './packages/autoSearch/index.js';
+import JmScoll from './packages/scoll/index.js';
 
 const components = [
   JmButton,
@@ -11,7 +12,8 @@ const components = [
   JmInput,
   JmSwitch,
   JmComfirm,
-  JmAutoSearch
+  JmAutoSearch,
+  JmScoll
 ]
 
 const install = function(Vue, opts = {}) {
@@ -32,5 +34,6 @@ export default {
   JmInput,
   JmSwitch,
   JmComfirm,
-  JmAutoSearch
+  JmAutoSearch,
+  JmScoll
 }

@@ -6,11 +6,8 @@
  * @Last Modified time: 2020-04-01 15:49:13 
  * @Description: File desctiption 
  */
+import JmScoll from './jm-scoll';
 
-import JmButton from './jm-button';
+JmScoll.install = Vue => Vue.component(JmScoll.name, JmScoll);
 
-JmButton.install = function(Vue) {
-  Vue.component(JmButton.name, JmButton);
-};
-
-export default JmButton;
+export default JmScoll;

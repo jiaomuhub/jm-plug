@@ -1,12 +1,11 @@
 /*
- * @Author: kuangxj 
- * @Email: frankxjkuang@gmail.com 
- * @Date: 2018-07-10 10:57:17 
- * @Last Modified by:   kaungxj 
- * @Last Modified time: 2018-07-10 10:57:17 
+ * @Author: jm 
+ * @Email: jiaomuyx@163.com 
+ * @Date: 2020-04-01 15:49:13 
+ * @Last Modified by:  jiaomu
+ * @Last Modified time: 2020-04-01 15:49:13 
  * @Description: File desctiption 
  */
-
 import JmComfirm from './jm-comfirm';
 
 JmComfirm.install = Vue => Vue.component(JmComfirm.name, JmComfirm);

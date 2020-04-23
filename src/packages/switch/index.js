@@ -1,9 +1,9 @@
 /*
- * @Author: kuangxj 
- * @Email: frankxjkuang@gmail.com 
- * @Date: 2018-07-10 11:35:39 
- * @Last Modified by: kaungxj
- * @Last Modified time: 2018-07-10 11:36:40
+ * @Author: jm 
+ * @Email: jiaomuyx@163.com 
+ * @Date: 2020-04-01 15:49:13 
+ * @Last Modified by:  jiaomu
+ * @Last Modified time: 2020-04-01 15:49:13 
  * @Description: File desctiption 
  */
 import JmSwitch from './jm-switch';
