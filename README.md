@@ -21,21 +21,133 @@ npm run build
 `Vue.use(JmPlug)`
 
 ### 页面引入comfirm组件
+
 ```
 `this.$refs.myConfirm.showModel();  
-  this.confirmOptions = {  
+this.confirmOptions = {  
     type: "warning",//warning  
     title: "提示",//提示  
     message: "are you ok?",//""  
     color: '#66b1ff',  
     btnCancelText: "取消",//取消  
     btnSubmitText: "确定",//确定  
-    btnSubmitFunction: function () {    
-        console.log('ok')    
+    btnSubmitFunction: function () {
+        console.log('ok')
     },  
     btnCancelFunction: function () {  
         console.log('no')  
     }  
 }`  
 `<Jm-comfirm :confirmModalOptions="confirmOptions" ref="myConfirm"></Jm-comfirm>`
+```
+
+### 页面引入scoll组件
+
+```
+`<jm-scoll 
+    :on-refresh="onRefresh" 
+    :on-infinite="onInfinite" 
+    :dataList="scrollData" 
+    :marginTop="marginTop">
+    <ul
+    ref="scoll">
+    <li v-for="(item,index) in listdata">{{item.name}}</li>
+    </ul>
+</jm-scoll>`
+
+data: {
+    marginTop:'margin-top:50px;',
+    pageStart: 0, // 开始页数
+    pageEnd: 0, // 结束页数
+    listdata: [], // 数据列表
+    scrollData:{
+        noFlag: false //暂无更多数据显示
+    },
+}
+
+
+    data() {
+      return {
+        marginTop:'margin-top:50px;',
+        pageStart: 0, // 开始页数
+        pageEnd: 0, // 结束页数
+        listdata: [], // 数据列表
+        scrollData:{
+          noFlag: false //暂无更多数据显示
+        },
+        data:[
+            {name: '23424'},
+            {name: '23424'},
+            {name: '23424'},
+            {name: '23424'},
+            {name: '23424'},
+            {name: '23424'},
+            {name: '23424'},
+            {name: '23424'},
+            {name: '23424'},
+            {name: '23424'},
+        ],
+        data1:[
+            {name: '23424'},
+            {name: '23424'},
+            {name: '23424'},
+            {name: '23424'},
+            {name: '23424'},
+            {name: '23424'},
+            {name: '23424'},
+            {name: '23424'},
+            {name: '23424'},
+            {name: '23424'},
+        ],
+      }
+    },
+    mounted: function() {
+      // 首次请求数据
+      this.fetchData();
+    },
+    methods: {
+      fetchData() {
+        let that = this
+        // this.axios.get('/api/testData').then((response) => {
+        //   this.listdata = response.data.data.list;
+        //   this.pageEnd = response.data.data.totalPage;
+          this.listdata = this.data;
+          // 获取总页数
+          this.pageEnd = 2;
+          // 还原
+          this.pageStart = 0;
+        // })
+      },
+      // 下拉刷新
+      onRefresh(done) {
+        this.fetchData();
+        done(); // call done
+      },
+      // 上拉加载更多
+      onInfinite(done) {
+        this.pageStart++;
+        // 加载条
+        let more = this.$el.querySelector('.load-more');
+        // 判断是否显示加载条
+        if(this.pageStart > this.pageEnd){
+          //走完数据调用方法
+          this.scrollData.noFlag = true;
+        }else{
+          let _this = this;
+          //   this.axios.get('/api/testData').then((response) => {
+              // _this.listdata = _this.listdata.concat(response.data.data.list);
+              // 获取总页数
+              // _this.pageEnd = response.data.data.totalPage;
+          //   })
+          setTimeout(() => {
+            _this.listdata = _this.listdata.concat(this.data1);
+            // 获取总页数
+            _this.pageEnd = 2;
+            // 隐藏加载条
+            more.style.display = 'none';
+            done();
+          },3000)
+        }
+      }
+    }
 ```
