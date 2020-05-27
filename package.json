@@ -1,7 +1,7 @@
 {
   "name": "jm-plug",
   "description": "An ui project base on Vue.js ",
-  "version": "1.1.7",
+  "version": "1.1.8",
   "author": "frankxjkuang <frankxjkuang@gmail.com>",
   "license": "MIT",
   "main": "dist/jm-plug.js",

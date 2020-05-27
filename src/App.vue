@@ -93,6 +93,7 @@
                 <li v-for="(item,index) in downdata">{{item.name}}</li>
             </ul>
         </jm-scoll> -->
+        <Jm-marquee :marqueeList="marqueeList">消息滚动</Jm-marquee>
     </div>
 </template>
 
@@ -160,7 +161,24 @@ export default {
             pageStart: 0, // 开始页数
             pageEnd: 0, // 结束页数
             listdata: [], // 下拉更新数据存放数组
-            downdata: [] // 上拉更多的数据存放数组
+            downdata: [], // 上拉更多的数据存放数组
+            marqueeList: [  //消息滚动
+                {
+                    name: '军电视剧烦恼是的空间开发'
+                },
+
+                {
+                    name: '军水电费了羧甲淀粉钠盛开'
+                },
+
+                {
+                    name: '军第三方库收到货否'
+                },
+
+                {
+                    name: '军杜师傅iOS'
+                }
+            ]
         }
     },
     methods: {

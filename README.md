@@ -15,57 +15,46 @@ npm run dev
 npm run build
 ```
 
-## 用法：
+## 用法
+
 ### main.js
+
 `import JmPlug from 'jm-plug'`
 `Vue.use(JmPlug)`
 
 ### 页面引入comfirm组件
 
-```
-`this.$refs.myConfirm.showModel();  
-this.confirmOptions = {  
-    type: "warning",//warning  
-    title: "提示",//提示  
-    message: "are you ok?",//""  
-    color: '#66b1ff',  
-    btnCancelText: "取消",//取消  
-    btnSubmitText: "确定",//确定  
-    btnSubmitFunction: function () {
-        console.log('ok')
-    },  
-    btnCancelFunction: function () {  
-        console.log('no')  
-    }  
-}`  
-`<Jm-comfirm :confirmModalOptions="confirmOptions" ref="myConfirm"></Jm-comfirm>`
+``` this.$refs.myConfirm.showModel();  
+    this.confirmOptions = {  
+        type: "warning",//warning  
+        title: "提示",//提示  
+        message: "are you ok?",//""  
+        color: '#66b1ff',  
+        btnCancelText: "取消",//取消  
+        btnSubmitText: "确定",//确定  
+        btnSubmitFunction: function () {
+            console.log('ok')
+        },  
+        btnCancelFunction: function () {  
+            console.log('no')  
+        }  
+    }
+    <Jm-comfirm :confirmModalOptions="confirmOptions" ref="myConfirm"></Jm-comfirm>
 ```
 
 ### 页面引入scoll组件
 
-```
-`<jm-scoll 
-    :on-refresh="onRefresh" 
-    :on-infinite="onInfinite" 
-    :dataList="scrollData" 
+``` bash
+<jm-scoll
+    :on-refresh="onRefresh"
+    :on-infinite="onInfinite"
+    :dataList="scrollData"
     :marginTop="marginTop">
     <ul
     ref="scoll">
     <li v-for="(item,index) in listdata">{{item.name}}</li>
     </ul>
-</jm-scoll>`
-
-data: {
-    marginTop:'margin-top:50px;',
-    pageStart: 0, // 开始页数
-    pageEnd: 0, // 结束页数
-    listdata: [], // 数据列表
-    scrollData:{
-        noFlag: false //暂无更多数据显示
-    },
-}
-
-
+</jm-scoll>
     data() {
       return {
         marginTop:'margin-top:50px;',
@@ -150,4 +139,31 @@ data: {
         }
       }
     }
+```
+
+### 消息滚动组件
+
+``` bash
+<Jm-marquee :marqueeList="marqueeList">消息滚动</Jm-marquee>
+data() {
+  return {
+    marqueeList: [  //消息滚动
+        {
+            name: '军电视剧烦恼是的空间开发'
+        },
+
+        {
+            name: '军水电费了羧甲淀粉钠盛开'
+        },
+
+        {
+            name: '军第三方库收到货否'
+        },
+
+        {
+            name: '军杜师傅iOS'
+        }
+    ]
+  }
+}
 ```

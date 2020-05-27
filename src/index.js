@@ -5,6 +5,7 @@ import JmSwitch from './packages/switch/index.js';
 import JmComfirm from './packages/comfirm/index.js';
 import JmAutoSearch from './packages/autoSearch/index.js';
 import JmScoll from './packages/scoll/index.js';
+import JmMarquee from './packages/marquee/index.js';
 
 const components = [
   JmButton,
@@ -13,7 +14,8 @@ const components = [
   JmSwitch,
   JmComfirm,
   JmAutoSearch,
-  JmScoll
+  JmScoll,
+  JmMarquee
 ]
 
 const install = function(Vue, opts = {}) {
@@ -35,5 +37,6 @@ export default {
   JmSwitch,
   JmComfirm,
   JmAutoSearch,
-  JmScoll
+  JmScoll,
+  JmMarquee
 }
