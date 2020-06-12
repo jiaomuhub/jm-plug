@@ -1,0 +1,28 @@
+$color-primary:#00ae9d; /* 主题颜色 */
+$color-primary-green:#0099CC; /* 更换的颜色 */
+$color-primary-blue:#666699; /* 更换的颜色 */
+ 
+ 
+@mixin bc_primary($color){/*通过该函数设置字体颜色，后期方便统一管理；*/
+  background-color:$color;
+   
+  [data-theme="#0099CC"] & {
+    background-color:$color-primary-green;
+  }
+  [data-theme="#666699"] & {
+    background-color:$color-primary-blue;
+  }
+   
+}
+
+@mixin border_primary($color){/*通过该函数设置字体颜色，后期方便统一管理；*/
+    border-color:$color;
+   
+  [data-theme="#0099CC"] & {
+    border-color:$color-primary-green;
+  }
+  [data-theme="#666699"] & {
+    border-color:$color-primary-blue;
+  }
+   
+}

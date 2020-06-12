@@ -2,17 +2,17 @@
   <div class="moor-select"
     @click.stop="handleToggleMenu()">
     <span @click.stop="handleToggleMenu()"
-      :class="{active: isShow}">{{currentOption.label || '请选择'}}
+      :class="{active: isShow}">{{(currentOption[label]?currentOption[label]:curOption[label]) || '请选择'}}
         <i class="caret"></i>
     </span>
 
     <input
-      v-bind:value="value"
+      :value="value"
       v-on:input="changeValue">
     <ul v-show="isShow">
       <li v-for="option in options"
-        :key="option.value"
-        @click="handleSelect(option)">{{option.label}}</li>
+        :key="option[valueKey]"
+        @click="handleSelect(option)">{{option[label]}}</li>
     </ul>
   </div>
 </template>
@@ -22,7 +22,14 @@ export default {
   name: 'JmSelect',
   props: {
     label: [String, Number],
+    valueKey: [String, Number],
     value: [String, Number],
+    currentOption: {
+      type: Object,
+      default: function () {
+        return {}
+      }
+    },
     options: {
       type: Array,
       default: function () {
@@ -33,7 +40,7 @@ export default {
   data() {
     return {
       isShow: false,
-      currentOption: '',
+      curOption: '',
     }
   },
   methods: {
@@ -45,12 +52,16 @@ export default {
       this.handleToggleMenu(false);
     },
     handleSelect(opts) {
-      this.changeValue(opts.value);
-      this.currentOption = opts;
+      this.changeValue(opts[this.valueKey]);
+      this.curOption = opts;
     },
     changeValue(value) {
-      this.$emit('input', value);
+      this.$emit('search', value);
+      this.$emit('change', value);
     },
+    handleBlur() {
+
+    }
   },
   mounted() {
     document.addEventListener('click', this.hideMenu);
@@ -62,6 +73,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../../assets/common.scss";
 .moor-select {
   width: 200px;
   position: relative;
@@ -95,8 +107,8 @@ export default {
     }
 
     &.active {
-      border-color: #409EFF;
-
+      // border-color: #409EFF;
+      @include border_primary($color-primary);
       .caret {
         transform: rotate(-180deg);
       }
@@ -120,7 +132,7 @@ ul {
   left: 0;
   width: 100%;
   background-color: #fff; 
-  z-index: 99;
+  z-index: 9999;
 
   &::before {
     width: 0;

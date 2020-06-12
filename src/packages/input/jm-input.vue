@@ -30,6 +30,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../../assets/common.scss";
 input {
   height: 34px;
   outline: none;
@@ -47,7 +48,8 @@ input {
   }
 
   &:focus {
-    border-color: #409EFF;
+    // border-color: #409EFF;
+    @include border_primary($color-primary);
   }
 }
 </style>

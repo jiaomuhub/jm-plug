@@ -55,6 +55,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../../assets/common.scss";
 .moor-switch {
   display: inline-block;
 
@@ -69,8 +70,9 @@ export default {
 
 .switch-box {
   width: 40px;
-  height: 18px;
-  background-color: rgb(19, 206, 102);
+  height: 20px;
+  // background-color: rgb(19, 206, 102);
+  @include bc_primary($color-primary);
   border-radius: 10px;
   display: flex;
   align-items: center;
@@ -81,12 +83,13 @@ export default {
   margin-left: 6px;
 
   &.closed {
-    background-color: rgb(255, 73, 73);
+    @include bc_primary($color-primary-blue);
+    // background-color: rgb(255, 73, 73);
   }
 
   span {
-    width: 16px;
-    height: 16px;
+    width: 17px;
+    height: 17px;
     border-radius: 50%;
     display: inline-block;
     background-color: #fff;

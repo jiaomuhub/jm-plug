@@ -123,9 +123,11 @@
     width: 50%;
     text-align: center;
     padding: 10px;
+    border: 1px solid #ccc;
   }
 
   .dh_button_blue {
     color: #03b488;
+    border-left: none;
   }
 </style>

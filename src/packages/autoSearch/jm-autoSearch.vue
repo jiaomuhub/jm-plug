@@ -30,6 +30,8 @@
 export default {
   name: 'JmAutoSearch',
   props: {
+    label: [String, Number],
+    valueKey: [String, Number],
     searchList: {
       type: Array
     },
@@ -126,10 +128,10 @@ export default {
       }else{ //json数组
         var array = JSON.parse(JSON.stringify(this.searchList));
         data_array = array.filter((item) => {
-          return item.value.indexOf(val)>-1
+          return item[this.label].indexOf(val)>-1
         })
         data_array = data_array.map((item) => {
-          return item.value
+          return item[this.label]
         })
         if(data_array.length>0) {
           this.isshow = true
@@ -159,9 +161,9 @@ export default {
         this.$emit('select', this.inputval)
       }else{
         for (var i=0;i<this.searchList.length;i++) {
-          if(this.inputval == this.searchList[i].value) {
-            this.$emit('select', this.searchList[i].value)
-            this.$emit('selectName', this.searchList[i].label)
+          if(this.inputval == this.searchList[i][this.label]) {
+            this.$emit('select', this.searchList[i][this.valueKey])
+            this.$emit('selectName', this.searchList[i][this.label])
           }
         }
       }
@@ -175,7 +177,8 @@ export default {
   }
 }
 </script>
-<style scoped>
+<style lang="scss" scoped>
+@import "../../assets/common.scss";
   .search-box {
     display: inline-block;
     position: relative;
@@ -189,6 +192,9 @@ export default {
     vertical-align: top;
     box-sizing: border-box;
   }
+  .input-style:focus {
+    @include border_primary($color-primary);
+  }
   #foraspcn {
     background-color: #fff;
     border: 1px solid #e7eef1;
@@ -201,7 +207,7 @@ export default {
     height: 0px;
     position: absolute;
     top: -16px;;
-    left:41px;
+    left:6px;
     padding:0;
     border-bottom:8px solid #FFFFFF;
     border-top:8px solid transparent;
@@ -217,7 +223,7 @@ export default {
     height: 0px;
     position: absolute;
     top: -18px;;
-    left:40px;
+    left:5px;
     padding:0;
     border-bottom:9px solid #e7eef1;
     border-top:9px solid transparent;
@@ -234,9 +240,10 @@ export default {
   #foraspcn li {
     list-style-type: none;
     padding: 8px 10px;
-    line-height: 40px;
-    height: 40px;
-    cursor: pointer;
+    line-height: 20px;
+    height: 20px;
+    cursor: pointer;    
+    border-bottom: 1px solid #f2f2f2;
   }
   .input-icon-down {
     width: 0;

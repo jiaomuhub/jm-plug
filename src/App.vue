@@ -1,10 +1,42 @@
 <template>
     <div id="app">
-        <!-- <div class="Jm-item">
-      <label>Title:</label>
-      <jm :color="color" :msg="msg"></jm-hello-world>
-    </div> -->
+        <!-- 主题 -->
+        <div class="Jm-item">
+            <label>主题: </label>
+            <Jm-select class="Jm-select"
+                       label="name"
+                       valueKey="color"
+                       v-model="theme"
+                       :value="currentOption.value"
+                       :options="themeList"
+                       :currentOption="currentOption"
+                       @search="v=>theme=v"
+                       @change="changeTheme">
+            </Jm-select>
+        </div>
+        <!-- Select -->
+        <div class="Jm-item">
+            <label>Select: </label>
+            <Jm-select class="Jm-select"
+                       label="name"
+                       valueKey="color"
+                       v-model="selectValue"
+                       :options="themeList"
+                       @search="v=>selectValue=v">
+            </Jm-select>
+        </div>
+        <!-- Radio -->
+        <div class="Jm-item">
+            <label>Radio: </label>
 
+            <Jm-radio 
+                label="name"
+                valueKey="color"
+                :dataList="themeList" 
+                v-model="lightRadio" 
+                @search="v=>lightRadio=v"></Jm-radio>
+        </div>
+        <!-- Button -->
         <div class="Jm-item">
             <label>Button:</label>
             <Jm-button class="Jm-btn"
@@ -26,17 +58,7 @@
                        bgcolor="#f56c6c"
                        color="#fff">危险</Jm-button>
         </div>
-
-        <div class="Jm-item">
-            <label>Select: </label>
-            <Jm-select class="Jm-select"
-                       label="label"
-                       value="value"
-                       v-model="selectValue"
-                       :options="options">
-            </Jm-select>
-        </div>
-
+        <!-- Input -->
         <div class="Jm-item">
             <label>Input: </label>
             <Jm-input v-model="input1"
@@ -51,7 +73,7 @@
                       :disabled="inputDisabled">
             </Jm-input>
         </div>
-
+        <!-- Switch -->
         <div class="Jm-item">
             <label>Switch: </label>
 
@@ -59,41 +81,52 @@
 
             <Jm-switch v-model="switchLight">开关(关):</Jm-switch>
         </div>
-
+        <!-- autoSearch -->
         <div class="Jm-item">
             <label>autoSearch: </label>
             <Jm-Auto-Search class="Jm-btn"
-                            @click="openComfirm"
-                            :searchWidth="250"
-                            :searchHeight="34"
-                            v-model="searchVal"
-                            :searchList="searchList1"
-                            :isSimpleArray="false"
-                            @select="v=>searchVal=v"
-                            @selectName="v=>searchVal=v">
+                label="name"
+                valueKey="color"
+                @click="openComfirm"
+                :searchWidth="250"
+                :searchHeight="34"
+                v-model="searchVal"
+                :searchList="themeList"
+                :isSimpleArray="false"
+                @select="v=>searchVal=v"
+                @selectName="v=>searchName=v">
             </Jm-Auto-Search>
             <!-- :isSimpleArray="true"    简单数组          :isSimpleArray="false"  //json数组-->
         </div>
-
+        <!-- comfirm -->
         <div class="Jm-item">
+            <label>comfirm: </label>
             <Jm-button class="Jm-btn"
                        @click="openComfirm">comfirm弹出框</Jm-button>
+            <Jm-comfirm :confirmModalOptions="confirmOptions"
+                    ref="myConfirm"></Jm-comfirm>
+        </div>
+        <!-- queeList -->
+        <div class="Jm-item">
+            <label>queeList: </label>
+            <Jm-marquee :marqueeList="marqueeList">消息滚动</Jm-marquee>
+        </div>
+        <!-- scoll -->
+        <div class="Jm-item">
+            <label>scoll: </label>
+            <Jm-button class="Jm-btn"
+                   @click="getList">滚动</Jm-button>
+            <!-- <jm-scoll :on-refresh="onRefresh"
+                    :on-infinite="onInfinite">
+                    <ul>
+                        <li v-for="(item,index) in listdata">{{item.name}}</li>
+                        <li v-for="(item,index) in downdata">{{item.name}}</li>
+                    </ul>
+            </jm-scoll> -->
         </div>
         <Jm-button class="Jm-btn"
                    @click="handlePrint">打印选项值</Jm-button>
-        <Jm-comfirm :confirmModalOptions="confirmOptions"
-                    ref="myConfirm"></Jm-comfirm>
-                    
-        <Jm-button class="Jm-btn"
-                   @click="getList">滚动</Jm-button>
-        <!-- <jm-scoll :on-refresh="onRefresh"
-                  :on-infinite="onInfinite">
-            <ul>
-                <li v-for="(item,index) in listdata">{{item.name}}</li>
-                <li v-for="(item,index) in downdata">{{item.name}}</li>
-            </ul>
-        </jm-scoll> -->
-        <Jm-marquee :marqueeList="marqueeList">消息滚动</Jm-marquee>
+        
     </div>
 </template>
 
@@ -102,29 +135,8 @@ export default {
     name: 'app',
     data() {
         return {
-            // HelloWorld
-            msg: 'Welcome to Jm UI!',
-            color: 'red',
             // Select
             selectValue: '',
-            options: [
-                {
-                    value: '选项1',
-                    label: '黄金糕'
-                },
-                {
-                    value: '选项2',
-                    label: '双皮奶'
-                },
-                {
-                    value: '选项3',
-                    label: '蚵仔煎'
-                },
-                {
-                    value: '选项4',
-                    label: '龙须面'
-                }
-            ],
             // input
             input1: '',
             input2: '这是默认值',
@@ -136,6 +148,7 @@ export default {
             confirmOptions: {},
             // autosearch
             searchVal: '',
+            searchName: '',
             searchList: ['选项1', '选项2', '选项3', 'jm'],
             searchList1: [
                 {
@@ -178,10 +191,36 @@ export default {
                 {
                     name: '军杜师傅iOS'
                 }
-            ]
+            ],
+            lightRadio: '#00ae9d',
+            themeList: [
+                {
+                    color: '#00ae9d',
+                    name: '绿色'
+                },
+                {
+                    color: '#0099CC',
+                    name: '蓝色'
+                },
+                {
+                    color: '#666699',
+                    name: '紫色'
+                }
+            ],
+            theme: '#0099CC',
+            currentOption: {
+                color: '#0099CC',
+                name: '蓝色'
+            }
         }
     },
     methods: {
+        changeTheme(val) {
+            console.log(this.theme,val)
+            // 切换主题  现支持 #00ae9d #0099CC #666699三种主题
+            window.document.documentElement.setAttribute('data-theme', val);
+        },
+        getList() {},
         // getList() {
         //     let vm = this
         //     vm.$http
@@ -240,7 +279,7 @@ export default {
                 type: 'warning', //warning
                 title: '提示', //提示
                 message: 'are you ok?', //""
-                color: '#66b1ff',
+                color: '#0099CC',
                 btnCancelText: '取消', //取消
                 btnSubmitText: '确定', //确定
                 btnSubmitFunction: function() {
@@ -259,6 +298,7 @@ export default {
             console.log('input1:', this.input1)
             console.log('input2:', this.input2)
             console.log('autoSelect:', this.searchVal)
+            console.log('lightRadio:', this.lightRadio)
         }
     },
     watch: {

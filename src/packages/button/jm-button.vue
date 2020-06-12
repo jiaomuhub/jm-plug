@@ -31,6 +31,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@keyframes mymove
+{
+  0%   {box-shadow: 0 0 0 2px #ccc;}
+  100% {box-shadow: 0 0 0 2px #fff;}
+}
 .jm-button {
   padding: 6px 20px;
   font-size: 14px;
@@ -38,6 +43,10 @@ export default {
   outline: none;
   color: #666;
   cursor: pointer;
+  border: 0;
+}
+.jm-button:active {
+  animation: mymove 1s 1;
 }
 </style>
 

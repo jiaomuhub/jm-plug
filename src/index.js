@@ -6,6 +6,7 @@ import JmComfirm from './packages/comfirm/index.js';
 import JmAutoSearch from './packages/autoSearch/index.js';
 import JmScoll from './packages/scoll/index.js';
 import JmMarquee from './packages/marquee/index.js';
+import JmRadio from './packages/radio/index.js';
 
 const components = [
   JmButton,
@@ -15,7 +16,8 @@ const components = [
   JmComfirm,
   JmAutoSearch,
   JmScoll,
-  JmMarquee
+  JmMarquee,
+  JmRadio
 ]
 
 const install = function(Vue, opts = {}) {
@@ -38,5 +40,6 @@ export default {
   JmComfirm,
   JmAutoSearch,
   JmScoll,
-  JmMarquee
+  JmMarquee,
+  JmRadio
 }
