@@ -17,6 +17,8 @@ npm run build
 
 ## 用法
 
+`npm install jm-plug --save`
+
 ### main.js
 
 `import JmPlug from 'jm-plug'`
@@ -166,4 +168,44 @@ data() {
     ]
   }
 }
+```
+
+### 仿百度搜索组件
+
+``` bash
+<Jm-Auto-Search class="Jm-btn"
+    label="name"
+    valueKey="color"
+    @click="openComfirm"
+    :searchWidth="250"
+    :searchHeight="34"
+    v-model="searchVal"
+    :searchList="themeList"
+    :isSimpleArray="false"
+    @select="v=>searchVal=v"
+    @selectName="v=>searchName=v">
+</Jm-Auto-Search>
+
+searchVal: '',
+searchName: '',
+searchList: ['选项1', '选项2', '选项3', 'jm'],
+searchList1: [
+    {
+        value: '选项1',
+        label: '黄金糕'
+    },
+    {
+        value: '选项2',
+        label: '双皮奶'
+    },
+    {
+        value: '选项3',
+        label: '蚵仔煎'
+    },
+    {
+        value: 'jm',
+        label: '龙须面'
+    }
+],
+#  :isSimpleArray="true"    简单数组          :isSimpleArray="false"  //json数组
 ```

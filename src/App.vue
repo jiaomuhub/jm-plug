@@ -124,8 +124,16 @@
                     </ul>
             </jm-scoll> -->
         </div>
-        <Jm-button class="Jm-btn"
-                   @click="handlePrint">打印选项值</Jm-button>
+        <!-- clickoutside 指令 -->
+        <div class="Jm-item" v-show="show" v-jmClickoutside="handleClose">
+            <label>jmClickoutside: </label>
+            <p>点击该区域之外  隐藏该区域</p>
+        </div>
+        <div class="Jm-item" v-jmDebounce="handlePrint">
+            <label>jmDebounce: </label>
+            <p>防抖指令</p>
+        </div>
+        <Jm-button class="Jm-btn" @click="handlePrint">打印选项值</Jm-button>
         
     </div>
 </template>
@@ -211,10 +219,14 @@ export default {
             currentOption: {
                 color: '#0099CC',
                 name: '蓝色'
-            }
+            },
+            show: true
         }
     },
     methods: {
+        handleClose(e) {
+            this.show = false;
+        },
         changeTheme(val) {
             console.log(this.theme,val)
             // 切换主题  现支持 #00ae9d #0099CC #666699三种主题

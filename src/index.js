@@ -7,6 +7,9 @@ import JmAutoSearch from './packages/autoSearch/index.js';
 import JmScoll from './packages/scoll/index.js';
 import JmMarquee from './packages/marquee/index.js';
 import JmRadio from './packages/radio/index.js';
+// 指令
+import jmClickoutside from './packages/directives/clickoutside.js';
+import jmDebounce from './packages/directives/debounce.js';
 
 const components = [
   JmButton,
@@ -20,9 +23,16 @@ const components = [
   JmRadio
 ]
 
+const directives = [
+  jmClickoutside,jmDebounce
+]
+
 const install = function(Vue, opts = {}) {
   components.map(component => {
     Vue.component(component.name, component);
+  })
+  directives.map(directive => {
+    Vue.directive(directive.name, directive);
   })
 }
 
@@ -41,5 +51,8 @@ export default {
   JmAutoSearch,
   JmScoll,
   JmMarquee,
-  JmRadio
+  JmRadio,
+  // 指令
+  jmClickoutside,
+  jmDebounce
 }
